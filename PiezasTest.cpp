@@ -30,3 +30,8 @@ TEST(PiezasTest, dropPiece_Col_Greater_Than_4)
 {
 	ASSERT_EQ(p.dropPiece(4), Invalid);
 }
+
+TEST(PiezasTest, dropPiece_Col_0)
+{
+	ASSERT_EQ(p.dropPiece(0), X);
+}

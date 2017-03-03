@@ -66,6 +66,7 @@ Piece Piezas::dropPiece(int column) {
 	else if(board[2][column] == Blank)
 		board[2][column] = turn;
 
+	pieceToReturn = (pieceToReturn == Invalid) ? turn : Invalid;
 	turn = (turn == X) ? O : X;
 
 	return pieceToReturn;
