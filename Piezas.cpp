@@ -50,8 +50,10 @@ void Piezas::reset() {
 Piece Piezas::dropPiece(int column) {
 
 	Piece pieceToReturn = Invalid;
-	if(column < 0 || column >= BOARD_COLS)
+	if(column < 0 || column >= BOARD_COLS) {
+		turn = (turn == X) ? O : X;
 		return pieceToReturn;
+	}
 
 	if(board[2][column] != Blank) {
 		pieceToReturn = Blank;
