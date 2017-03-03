@@ -36,3 +36,24 @@ TEST(PiezasTest, dropPiece_Col_Greater_Than_4)
 	ASSERT_EQ(p.dropPiece(4), Invalid);
 }
 
+TEST(PiezasTest, dropPiece_Col_0_Row_1)
+{
+	ASSERT_EQ(p.dropPiece(0), O);
+}
+
+TEST(PiezasTest, dropPiece_Col_0_Row_2)
+{
+	ASSERT_EQ(p.dropPiece(0), X);
+}
+
+TEST(PiezasTest, dropPiece_Col_5)
+{
+	ASSERT_EQ(p.dropPiece(0), Invalid);
+}
+
+TEST(PiezasTest, dropPiece_Col_1_Row_0)
+{
+	ASSERT_EQ(p.dropPiece(1), X);
+}
+
+
