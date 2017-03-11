@@ -101,5 +101,21 @@ Piece Piezas::pieceAt(int row, int column) {
  * line, it is a tie.
 **/
 Piece Piezas::gameState() {
+	if(allLocationsFilled()) {
+	}
+	else
 	return Invalid;
+}
+
+bool Piezas::allLocationsFilled() {
+	for(int i = 0; i < BOARD_ROWS; i++) {
+		for(int j = 0; j < BOARD_COLS; j++) {
+			Piece piece = pieceAt(i,j);
+			if (piece == Blank) {
+				return false;
+			}
+		}
+	}
+
+	return true;
 }

@@ -72,6 +72,7 @@ class Piezas
      * line, it is a tie.
     **/
   	Piece gameState();
+	bool allLocationsFilled();
 };
 
 #endif /*_PIEZAS_H_*/

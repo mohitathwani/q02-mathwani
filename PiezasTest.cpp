@@ -86,3 +86,8 @@ TEST(PiezasTest, pieceAt_Check_Valid_Piece)
 	ASSERT_EQ(p.pieceAt(0, 0), O);
 	ASSERT_EQ(p.pieceAt(0,1), X);
 }
+
+TEST(PiezasTest, gameState_Invalid_Test)
+{
+	ASSERT_EQ(p.gameState(), Invalid);
+}
