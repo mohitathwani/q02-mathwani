@@ -75,3 +75,14 @@ TEST(PiezasTest, pieceAt_Col_Greater_Than_Equal_4)
 {
 	ASSERT_EQ(p.pieceAt(0, 4), Invalid);
 }
+
+TEST(PiezasTest, pieceAt_Check_Blank)
+{
+	ASSERT_EQ(p.pieceAt(0, 2), Blank);
+}
+
+TEST(PiezasTest, pieceAt_Check_Valid_Piece)
+{
+	ASSERT_EQ(p.pieceAt(0, 0), O);
+	ASSERT_EQ(p.pieceAt(0,1), X);
+}
