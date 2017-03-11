@@ -21,7 +21,6 @@
  * specifies it is X's turn first
 **/
 Piezas::Piezas() {
-	turn = X;
 	reset();
 }
 
@@ -30,12 +29,20 @@ Piezas::Piezas() {
  * same size as previously specified
 **/
 void Piezas::reset() {
+	turn = X;
+
+	if(board.size() == 3) {
+		board.erase(board.begin(), board.end());
+	}
+
 	for(int i = 0; i < BOARD_ROWS; i++) {
 		std::vector<Piece> x;
 		for(int j = 0; j < BOARD_COLS; j++) {
 			x.push_back(Blank);
 		}
+
 		board.push_back(x);
+
 	}
 }
 
@@ -101,7 +108,36 @@ Piece Piezas::pieceAt(int row, int column) {
  * line, it is a tie.
 **/
 Piece Piezas::gameState() {
+	int xScore = 0, oScore = 0;
 	if(allLocationsFilled()) {
+		for(int i = 0; i < BOARD_ROWS; i++) {
+			Piece p = board[i][0];
+			if(p == board[i][1] && p == board[i][2]) {
+				if(p == X) xScore++;
+				else if(p == O) oScore++;
+			}
+			p = board[i][1];
+			if(p == board[i][2] && p == board[i][3]) {
+				if(p == X) xScore++;
+				else if(p == O) oScore++;
+			}
+		}
+
+		for(int j = 0; j < BOARD_COLS; j++) {
+			Piece p = board[0][j];
+			if(p == board[1][j]) {
+				if(p == X) xScore++;
+				else if(p == O) oScore++;
+			}
+			p = board[1][j];
+			if(p == board[2][j]) {
+				if(p == X) xScore++;
+				else if(p == O) oScore++;
+			}
+		}
+		if(xScore == oScore) return Blank;
+
+		return (xScore > oScore) ? X : O;
 	}
 	else
 	return Invalid;

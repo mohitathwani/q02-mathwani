@@ -91,3 +91,66 @@ TEST(PiezasTest, gameState_Invalid_Test)
 {
 	ASSERT_EQ(p.gameState(), Invalid);
 }
+
+TEST(PiezasTest, gameState_Tie_Test)
+{
+	p.reset();
+	ASSERT_EQ(p.dropPiece(0), X);
+	ASSERT_EQ(p.dropPiece(3), O);
+	ASSERT_EQ(p.dropPiece(1), X);
+	ASSERT_EQ(p.dropPiece(3), O);
+	ASSERT_EQ(p.dropPiece(2), X);
+	ASSERT_EQ(p.dropPiece(3), O);
+	ASSERT_EQ(p.dropPiece(0), X);
+	ASSERT_EQ(p.dropPiece(2), O);
+	ASSERT_EQ(p.dropPiece(1), X);
+	ASSERT_EQ(p.dropPiece(2), O);
+	ASSERT_EQ(p.dropPiece(0), X);
+	ASSERT_EQ(p.dropPiece(1), O);
+	ASSERT_EQ(p.gameState(), Blank);
+}
+
+TEST(PiezasTest, gameState_X_Wins)
+{
+	p.reset();
+	ASSERT_EQ(p.dropPiece(0), X);
+	ASSERT_EQ(p.dropPiece(0), O);
+	ASSERT_EQ(p.dropPiece(1), X);
+	ASSERT_EQ(p.dropPiece(0), O);
+
+	ASSERT_EQ(p.dropPiece(1), X);
+	ASSERT_EQ(p.dropPiece(1), O);
+	ASSERT_EQ(p.dropPiece(2), X);
+	ASSERT_EQ(p.dropPiece(3), O);
+
+	ASSERT_EQ(p.dropPiece(2), X);
+	ASSERT_EQ(p.dropPiece(2), O);
+	ASSERT_EQ(p.dropPiece(3), X);
+	ASSERT_EQ(p.dropPiece(3), O);
+	ASSERT_EQ(p.gameState(), X);
+}
+
+TEST(PiezasTest, gameState_O_Wins)
+{
+	p.reset();
+	ASSERT_EQ(p.dropPiece(0), X);
+	ASSERT_EQ(p.dropPiece(1), O);
+	ASSERT_EQ(p.dropPiece(1), X);
+	ASSERT_EQ(p.dropPiece(2), O);
+
+	ASSERT_EQ(p.dropPiece(2), X);
+	ASSERT_EQ(p.dropPiece(0), O);
+	ASSERT_EQ(p.dropPiece(5), Invalid);
+	ASSERT_EQ(p.dropPiece(3), O);
+
+	ASSERT_EQ(p.dropPiece(0), X);
+	ASSERT_EQ(p.dropPiece(1), O);
+	ASSERT_EQ(p.dropPiece(5), Invalid);
+	ASSERT_EQ(p.dropPiece(2), O);
+	ASSERT_EQ(p.dropPiece(5), Invalid);
+	ASSERT_EQ(p.dropPiece(3), O);
+	ASSERT_EQ(p.dropPiece(5), Invalid);
+	ASSERT_EQ(p.dropPiece(3), O);
+
+	ASSERT_EQ(p.gameState(), O);
+}
